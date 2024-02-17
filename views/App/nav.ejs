@@ -1,0 +1,49 @@
+<div class="flex justify-between px-10 py-3 md:py-5">
+    <div>
+        <a href="/home">LOGO</a>
+    </div>
+    <div class="md:hidden">
+        <button id="menuToggle" class="focus:outline-none">
+            <ion-icon name="menu-outline" class="text-3xl"></ion-icon>
+        </button>
+    </div>
+    <div class="hidden md:flex gap-5">
+        <a href="/home">หน้าแรก</a>
+        <a href="/home">ติดต่อแอดมิน</a>
+        <% if (user) { %>
+            <% if (user.role === 'admin') { %>
+                <a href="/admin">หน้าแอดมิน</a>
+            <% } %>
+            <a href="/logout">ออกสู่ระบบ</a>
+        <% } else { %>
+            <a href="/login">เข้าสู่ระบบ</a>
+        <% } %>
+    </div>
+    <div class="hidden md:flex gap-2">
+        <p><%= user.username %></p>
+        <p><%= user.point %></p>
+    </div>
+</div>
+<div id="menu" class="hidden md:hidden">
+    <div class="flex gap-2 justify-center">
+        <a href="/home">หน้าแรก</a>
+        <a href="/home">ติดต่อแอดมิน</a>
+        <% if (user) { %>
+            <% if (user.role === 'admin') { %>
+                <a href="/admin">หน้าแอดมิน</a>
+            <% } %>
+            <a href="/logout">ออกสู่ระบบ</a>
+        <% } else { %>
+            <a href="/login">เข้าสู่ระบบ</a>
+        <% } %>
+    </div>
+    <div class="flex justify-center gap-2">
+        <p><%= user.username %></p>
+        <p><%= user.point %></p>
+    </div>
+</div>
+<script>
+    document.getElementById('menuToggle').addEventListener('click', function() {
+        document.getElementById('menu').classList.toggle('hidden');
+    });
+</script>
