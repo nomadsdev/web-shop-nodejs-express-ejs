@@ -1,10 +1,10 @@
 <footer class="p-4 bg-white md:p-8 lg:p-10">
     <div class="mx-auto max-w-screen-xl text-center">
         <% websites.forEach(website => { %>
-            <a href="/home" class="flex justify-center items-center text-2xl text-gray-900"><%= website.name %> </a>
+            <a href="/home" class="flex justify-center items-center md:text-2xl sm:text-xl text-base text-gray-900"><%= website.name %> </a>
         <% }); %>
-        <p class="my-6 text-gray-500">ร้านค้าออนไลน์ ที่ดีที่สุด</p>
-        <ul class="flex flex-wrap justify-center items-center mb-6 text-gray-900">
+        <p class="mt-2 mb-5 text-gray-500 sm:text-base text-sm">ร้านค้าออนไลน์ ที่ดีที่สุด</p>
+        <ul class="flex flex-wrap justify-center items-center mb-6 text-gray-900 sm:text-base text-xs">
             <li>
                 <a href="#" class="mr-4 hover:underline md:mr-6 ">หน้าแรก</a>
             </li>
@@ -27,6 +27,6 @@
                 <a href="#" class="mr-4 hover:underline md:mr-6">ติดต่อแอดมิน</a>
             </li>
         </ul>
-        <span class="text-sm text-gray-500 sm:text-center">© <a href="#" class="hover:underline">LOGO</a> ร้านค้าที่มีระบบอัตโนมัตง่ายต่อการดูแล</span>
+        <span class="sm:text-sm text-xs text-gray-500 sm:text-center">© <a href="#" class="hover:underline">LOGO</a> ร้านค้าที่มีระบบอัตโนมัตง่ายต่อการดูแล</span>
     </div>
 </footer>

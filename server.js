@@ -78,6 +78,75 @@ app.get('/home', (req, res) => {
     }
 });
 
+app.get('/contact-admin', (req, res) => {
+    res.render('contactAdmin');
+});
+
+app.get('/order-history', (req, res) => {
+    if (!req.session.loggedin) {
+        res.redirect('/');
+        return;
+    }
+
+    const userId = req.session.userId;
+    const sqlGetOrders = `SELECT * FROM orders WHERE user_id = ?`;
+    db.query(sqlGetOrders, [userId], (err, orders) => {
+        if (err) {
+            console.error('Error retrieving orders:', err);
+            res.send('Error retrieving orders');
+            return;
+        }
+        res.render('orderHistory', { orders });
+    });
+});
+app.post('/buy-product', (req, res) => {
+    if (!req.session.loggedin) {
+        res.redirect('/');
+        return;
+    }
+    
+    const productId = req.body.productId;
+    const quantity = req.body.quantity;
+    
+    const sqlGetProduct = `SELECT * FROM products WHERE id = ?`;
+    db.query(sqlGetProduct, [productId], (err, result) => {
+        if (err) {
+            console.error('Error retrieving product:', err);
+            res.send('Error retrieving product');
+            return;
+        }
+        
+        const product = result[0];
+        const totalPrice = product.price * quantity;
+
+        if (req.session.point < totalPrice) {
+            res.send('Insufficient points');
+            return;
+        }
+
+        const sqlBuyProduct = `INSERT INTO orders (user_id, product_id, quantity, total_price) VALUES (?, ?, ?, ?)`;
+        db.query(sqlBuyProduct, [req.session.userId, productId, quantity, totalPrice], (err, result) => {
+            if (err) {
+                console.error('Error buying product:', err);
+                res.send('Error buying product');
+                return;
+            }
+
+            const remainingPoints = req.session.point - totalPrice;
+            const sqlUpdatePoints = `UPDATE users SET point = ? WHERE id = ?`;
+            db.query(sqlUpdatePoints, [remainingPoints, req.session.userId], (err, result) => {
+                if (err) {
+                    console.error('Error updating points:', err);
+                    res.send('Error updating points');
+                    return;
+                }
+                
+                res.redirect('/home');
+            });
+        });
+    });
+});
+
 app.post('/update-website', (req, res) => {
     if (!req.session.loggedin || req.session.role !== 'admin') {
         res.redirect('/');
@@ -245,16 +314,25 @@ app.post('/add-product', (req, res) => {
         res.redirect('/');
         return;
     }
-    const { name, price, description, image_url } = req.body;
-    const sqlAddProduct = `INSERT INTO products (name, price, description, image_url) VALUES (?, ?, ?, ?)`;
+    const { name, price, description, image_url, quantity } = req.body;
+    const sqlAddProduct = `INSERT INTO products (name, price, description, image_url, quantity) VALUES (?, ?, ?, ?, ?)`;
 
-    db.query(sqlAddProduct, [name, price, description, image_url], (err, result) => {
+    db.query(sqlAddProduct, [name, price, description, image_url, quantity], (err, result) => {
         if (err) {
             console.error('Error adding product:', err);
             res.send('Error adding product');
             return;
         }
-        res.redirect('/admin');
+        const productId = result.insertId;
+        const sqlUpdateQuantity = `UPDATE products SET quantity = ? WHERE id = ?`;
+        db.query(sqlUpdateQuantity, [quantity, productId], (err, result) => {
+            if (err) {
+                console.error('Error updating product quantity:', err);
+                res.send('Error updating product quantity');
+                return;
+            }
+            res.redirect('/admin');
+        });
     });
 });
 
@@ -335,7 +413,7 @@ app.post('/edit-product', (req, res) => {
                     <div class="modal-content">
                         <div class="flex justify-between pb-2">
                             <h2>แก้ไขข้อมูลสินค้า</h2>
-                            <span class="close">&times;</span>
+                            <a href="/admin" class="close">&times;</a>
                         </div>
                         <form action="/update-product" method="POST">
                             <input type="hidden" name="product_id" value="${product.id}">

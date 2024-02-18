@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@500&display=swap" rel="stylesheet">
+    <style>
+        *{
+            font-family: "Noto Sans Thai", sans-serif;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="flex justify-center px-5 py-10"> 
+        <div class="w-full max-w-7xl">
+
+            <h1 class="text-2xl font-semibold mb-4">Order History</h1>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <% orders.forEach(order => { %>
+                    <div class="bg-white shadow rounded-md p-2 flex gap-5">
+                        <h2 class="text-lg font-semibold mb-2">Order ID: <%= order.id %></h2>
+                        <p><strong>Product Name:</strong> <%= order.product_name %></p>
+                        <p><strong>Quantity:</strong> <%= order.quantity %></p>
+                        <p><strong>Total Price:</strong> <%= order.total_price %></p>
+                        <p><strong>Order Date:</strong> <%= order.created_at %></p>
+                    </div>
+                <% }); %>
+            </div>
+
+        </div>
+    </div>
+    
+</body>
+</html>

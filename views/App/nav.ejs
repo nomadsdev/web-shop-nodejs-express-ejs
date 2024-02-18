@@ -5,13 +5,14 @@
         <% }); %>
     </div>
     <div class="md:hidden">
-        <button id="menuToggle" class="focus:outline-none">
-            <ion-icon name="menu-outline" class="text-3xl"></ion-icon>
+        <button id="menuToggle" class="focus:outline-none border rounded-md flex px-2 text-zinc-400">
+            <ion-icon name="menu-outline" class="text-2xl"></ion-icon>
         </button>
     </div>
     <div class="hidden md:flex gap-5">
         <a href="/home">หน้าแรก</a>
-        <a href="/home">ติดต่อแอดมิน</a>
+        <a href="/contact-admin">ติดต่อแอดมิน</a>
+        <a href="/order-history">ประวัติการสั่งซื้อ</a>
         <% if (user) { %>
             <% if (user.role === 'admin') { %>
                 <a href="/admin">หน้าแอดมิน</a>
@@ -27,7 +28,7 @@
     </div>
 </div>
 <div id="menu" class="hidden md:hidden">
-    <div class="flex gap-2 justify-center">
+    <div class="flex gap-3 justify-center sm:text-base text-xs sm:py-0 py-5">
         <a href="/home">หน้าแรก</a>
         <a href="/home">ติดต่อแอดมิน</a>
         <% if (user) { %>
