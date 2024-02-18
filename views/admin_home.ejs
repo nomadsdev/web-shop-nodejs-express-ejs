@@ -108,7 +108,7 @@
                     </button>
                 </div>
             </div>
-            <div id="addUserModal" class="fixed inset-0 overflow-y-auto hidden">
+            <div id="addUserModal" class="z-[9999] fixed inset-0 overflow-y-auto hidden">
                 <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
                     <div class="fixed backdrop-blur-sm inset-0 transition-opacity">
                         <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
@@ -175,7 +175,7 @@
                         <div class="flex gap-5 items-center">
                             <div>
                                 <button id="editRoleBtn" class="text-blue-500 text-lg flex"><ion-icon name="create-outline"></ion-icon></button>
-                                <div id="editRoleModal" class="fixed inset-0 overflow-y-auto hidden">
+                                <div id="editRoleModal" class="z-[9999] fixed inset-0 overflow-y-auto hidden">
                                     <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
                                         <div class="fixed backdrop-blur-sm inset-0 transition-opacity">
                                             <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
@@ -246,13 +246,13 @@
                             </div>
                         </div>
                     </button>
-                    <div id="addPointsModal" class="fixed inset-0 overflow-y-auto hidden">
+                    <div id="addPointsModal" class="z-[9999] fixed inset-0 overflow-y-auto hidden">
                         <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
                             <div class="fixed backdrop-blur-sm inset-0 transition-opacity">
                                 <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
                             </div>
                             <span class="hidden sm:inline-block sm:align-middle sm:h-screen"></span>&#8203;
-                            <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                            <div class="inline-block z-[888] align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
                                 <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                                     <h2 class="text-lg leading-6 text-gray-900 mb-5">เพิ่มพ้อยท์</h2>
                                     <form action="/add-point" method="POST">
@@ -290,25 +290,25 @@
                             </div>
                         </div>
                     </button>
-                    <div id="addProductModal" class="fixed inset-0 bg-gray-800 backdrop-blur-sm bg-opacity-75 flex items-center justify-center hidden">
+                    <div id="addProductModal" class="fixed inset-0 bg-gray-800 z-[9999] backdrop-blur-sm bg-opacity-75 flex items-center justify-center hidden">
                         <div class="bg-white rounded-lg p-8 max-w-3xl w-full mx-auto">
                             <h2 class="text-2xl mb-4">เพิ่มสินค้า</h2>
                             <form action="/add-product" method="POST">
                                 <div class="mb-4">
                                     <label for="productName" class="block text-sm font-medium text-gray-700">ชื่อสินค้า <span class="text-red-500">*</span></label>
-                                    <input type="text" id="productName" name="name" placeholder="Product Name" required class="mt-1 focus:ring-orange-500 focus:border-orange-500 border px-2 py-1 border-gray-300 rounded-md shadow-sm w-full">
+                                    <input type="text" id="productName" name="name" placeholder="ชื่อสินค้า" required class="mt-1 focus:ring-orange-500 focus:border-orange-500 border px-2 py-1 border-gray-300 rounded-md shadow-sm w-full">
                                 </div>
                                 <div class="mb-4">
                                     <label for="productPrice" class="block text-sm font-medium text-gray-700">ราคา <span class="text-red-500">*</span></label>
-                                    <input type="number" id="productPrice" name="price" placeholder="Price" required class="mt-1 focus:ring-orange-500 focus:border-orange-500 border px-2 py-1 border-gray-300 rounded-md shadow-sm w-full">
+                                    <input type="number" id="productPrice" name="price" placeholder="ราคา" required class="mt-1 focus:ring-orange-500 focus:border-orange-500 border px-2 py-1 border-gray-300 rounded-md shadow-sm w-full">
                                 </div>
                                 <div class="mb-4">
                                     <label for="productDescription" class="block text-sm font-medium text-gray-700">คำอธิบาย <span class="text-red-500">*</span></label>
-                                    <textarea id="productDescription" name="description" placeholder="Description" class="mt-1 focus:ring-orange-500 focus:border-orange-500 border px-2 py-1 border-gray-300 rounded-md shadow-sm w-full"></textarea>
+                                    <textarea id="productDescription" name="description" placeholder="รายละเอียด" class="mt-1 focus:ring-orange-500 focus:border-orange-500 border px-2 py-1 border-gray-300 rounded-md shadow-sm w-full"></textarea>
                                 </div>
                                 <div class="mb-4">
                                     <label for="productImage" class="block text-sm font-medium text-gray-700">ลิงก์รูปภาพ <span class="text-red-500">*</span></label>
-                                    <input type="text" id="productImage" name="image_url" placeholder="Image URL" class="mt-1 focus:ring-orange-500 focus:border-orange-500 border px-2 py-1 border-gray-300 rounded-md shadow-sm w-full">
+                                    <input type="text" id="productImage" name="image_url" placeholder="รูปภาพ URL" class="mt-1 focus:ring-orange-500 focus:border-orange-500 border px-2 py-1 border-gray-300 rounded-md shadow-sm w-full">
                                 </div>
                                 <div class="flex justify-end">
                                     <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-orange-500 hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500">เพิ่มสินค้า</button>
@@ -327,13 +327,13 @@
                             </div>
                         </div>
                     </button>
-                    <div id="editWebsiteModal" class="fixed inset-0 overflow-y-auto hidden">
+                    <div id="editWebsiteModal" class="z-[9999] fixed inset-0 overflow-y-auto hidden">
                         <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
                             <div class="fixed backdrop-filter backdrop-blur-sm inset-0 transition-opacity">
                                 <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
                             </div>
                             <span class="hidden sm:inline-block sm:align-middle sm:h-screen">&#8203;</span>
-                            <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                            <div class="inline-block z-[991] align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
                                 <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                                     <h2 class="text-lg leading-6 font-medium text-gray-900 mb-5">แก้ไขชื่อเว็บไซต์</h2>
                                     <ul>
@@ -350,7 +350,7 @@
                                     </ul>
                                 </div>
                                 <div class="px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                                    <button id="closeEditWebsiteModalBtn" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-500 text-base font-medium text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">ปิดหน้าต่าง</button>
+                                    <button id="closeEditWebsiteModalBtn" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-1 bg-red-500 text-base font-medium text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">ปิดหน้าต่าง</button>
                                 </div>
                             </div>
                         </div>
