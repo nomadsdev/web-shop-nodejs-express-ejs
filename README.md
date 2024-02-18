@@ -1,6 +1,6 @@
 # Web Shop Nodjes
 
-![logo](https://cdn.discordapp.com/attachments/1176760844495888384/1208513313239994408/image.png?ex=65e38eba&is=65d119ba&hm=f9d60a58c0b0873cf3e0eee8bfb5f2476de99f90bcb4bbe2c69c70c33ee844f8&)
+![logo](https://cdn.discordapp.com/attachments/1176760844495888384/1208639063347961918/image.png?ex=65e403d8&is=65d18ed8&hm=e74548bf3105487ce5cd4fca134f5a4551dddf4e4278201bf9c7aa0c17410d55&)
 
 ## How to install
 ```
