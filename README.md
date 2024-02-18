@@ -5,7 +5,7 @@
 ## How to install
 ```
 npm i
-nodemon server
+nodemon server.js
 ```
 
 ## Language Framework
