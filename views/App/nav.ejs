@@ -1,6 +1,8 @@
 <div class="flex justify-between px-10 py-3 md:py-5">
     <div>
-        <a href="/home">LOGO</a>
+        <% websites.forEach(website => { %>
+        <a href="/home"><%= website.name %> </a>
+        <% }); %>
     </div>
     <div class="md:hidden">
         <button id="menuToggle" class="focus:outline-none">

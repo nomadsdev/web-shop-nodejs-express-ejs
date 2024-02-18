@@ -62,16 +62,38 @@ app.get('/home', (req, res) => {
     if (req.session.loggedin) {
         const sqlUser = `SELECT * FROM users WHERE username = ?`;
         const sqlProducts = `SELECT * FROM products`;
+        const sqlGetWebsite = `SELECT * FROM websites`;
         db.query(sqlUser, [req.session.username], (err, userResults) => {
             if (err) throw err;
             db.query(sqlProducts, (err, products) => {
                 if (err) throw err;
-                res.render('home', { user: userResults[0], products });
+                db.query(sqlGetWebsite, (err, WebsiteResults) => {
+                    if (err) throw err;
+                    res.render('home', { user: userResults[0], products, websites: WebsiteResults });
+                })
             })
         });
     } else {
         res.redirect('/');
     }
+});
+
+app.post('/update-website', (req, res) => {
+    if (!req.session.loggedin || req.session.role !== 'admin') {
+        res.redirect('/');
+        return;
+    }
+    const { website_id, new_name } = req.body;
+    const sqlUpdateWebsite = `UPDATE websites SET name = ? WHERE id = ?`;
+
+    db.query(sqlUpdateWebsite, [new_name, website_id], (err, result) => {
+        if (err) {
+            console.error('Error updating website:', err);
+            res.send('Error updating website');
+            return;
+        }
+        res.redirect('/admin');
+    });
 });
 
 app.get('/product/:id', (req, res) => {
@@ -101,6 +123,7 @@ app.get('/admin', (req, res) => {
     const sqlAllUsers = `SELECT * FROM users`;
     const sqlProducts = `SELECT * FROM products`;
     const sqlDisProduct = `SELECT * FROM products`;
+    const sqlGetWebsite = `SELECT * FROM websites`;
     db.query(sqlAllUsers, (err, allUsers) => {
         if (err) {
             console.error('Error retrieving users:', err);
@@ -111,7 +134,16 @@ app.get('/admin', (req, res) => {
             if (err) throw err;
             db.query(sqlDisProduct, (err, totalProducts) => {
                 if (err) throw err;
-                res.render('admin_home', { users: allUsers, user: req.session.username, products, totalProducts: totalProducts });
+                db.query(sqlGetWebsite, (err, WebsiteResults) => {
+                    if (err) throw err;
+                    res.render('admin_home', { 
+                        users: allUsers,
+                        user: req.session.username,
+                        products,
+                        totalProducts: totalProducts,
+                        websites: WebsiteResults
+                    });
+                })
             })
         })
     });

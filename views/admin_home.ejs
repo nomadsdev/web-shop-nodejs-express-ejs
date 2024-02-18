@@ -316,6 +316,45 @@
                             </form>
                         </div>
                     </div>
+
+                    <button id="openEditWebsiteModalBtn">
+                        <div class="border border-green-500 text-green-500 rounded-md py-5">
+                            <div class="flex justify-center md:text-4xl text-3xl">
+                                <ion-icon name="settings-outline"></ion-icon>
+                            </div>
+                            <div class="flex justify-center pt-2 md:text-base text-sm">
+                                <p>ตั้งค่าเว็บ</p>
+                            </div>
+                        </div>
+                    </button>
+                    <div id="editWebsiteModal" class="fixed inset-0 overflow-y-auto hidden">
+                        <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+                            <div class="fixed backdrop-filter backdrop-blur-sm inset-0 transition-opacity">
+                                <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+                            </div>
+                            <span class="hidden sm:inline-block sm:align-middle sm:h-screen">&#8203;</span>
+                            <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                                <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                                    <h2 class="text-lg leading-6 font-medium text-gray-900 mb-5">แก้ไขชื่อเว็บไซต์</h2>
+                                    <ul>
+                                        <% websites.forEach(website => { %>
+                                            <li class="flex items-center justify-between border-gray-300 py-2">
+                                                <span><%= website.name %></span>
+                                                <form action="/update-website" method="POST" class="flex items-center">
+                                                    <input type="hidden" name="website_id" value="<%= website.id %>">
+                                                    <input type="text" name="new_name" placeholder="ชื่อเว็บ" class="border border-gray-300 px-2 py-1 rounded-md mr-2" required>
+                                                    <button type="submit" class="bg-blue-500 text-white px-3 py-1 rounded-md">บันทึก</button>
+                                                </form>
+                                            </li>
+                                        <% }); %>
+                                    </ul>
+                                </div>
+                                <div class="px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                                    <button id="closeEditWebsiteModalBtn" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-500 text-base font-medium text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">ปิดหน้าต่าง</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     
                 </div>
             </div>
@@ -364,6 +403,9 @@
         const addPointsBtn = document.getElementById('addPointsBtn');
         const addPointsModal = document.getElementById('addPointsModal');
         const closeAddPointsModalBtn = document.getElementById('closeAddPointsModalBtn');
+        const openEditWebsiteModalBtn = document.getElementById('openEditWebsiteModalBtn');
+        const editWebsiteModal = document.getElementById('editWebsiteModal');
+        const closeEditWebsiteModalBtn = document.getElementById('closeEditWebsiteModalBtn');
         addUserBtn.addEventListener('click', () => {
             addUserModal.classList.toggle('hidden');
         });
@@ -408,6 +450,25 @@
             var modal = document.getElementById('addProductModal');
             modal.classList.add('hidden');
         }
+        function searchUsers() {
+        var searchText = document.getElementById("searchInput").value.toLowerCase();
+        var users = document.querySelectorAll("ul > li");
+        users.forEach(function(user) {
+            var username = user.querySelector("p:first-child").textContent.toLowerCase();
+            if (username.includes(searchText)) {
+                user.style.display = "flex";
+            } else {
+                user.style.display = "none";
+            }
+        });
+        }
+        openEditWebsiteModalBtn.addEventListener('click', () => {
+        editWebsiteModal.classList.remove('hidden');
+        });
+
+        closeEditWebsiteModalBtn.addEventListener('click', () => {
+            editWebsiteModal.classList.add('hidden');
+        });
     </script>
     
 </body>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 17, 2024 at 09:24 PM
+-- Generation Time: Feb 18, 2024 at 06:49 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -53,9 +53,11 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `name`, `price`, `description`, `image_url`) VALUES
-(1, 'Valorant', 199.00, 'Hack Valorant', 'https://placehold.co/300x300/EEE/31343C'),
-(2, 'FiveM', 599.00, 'Winterfell', 'https://placehold.co/300x300/EEE/31343C'),
-(4, 'jmmstudio', 999.00, 'jmmstudio', 'https://placehold.co/300x300/EEE/31343C');
+(4, 'jmmstudio', 999.00, 'jmmstudio', 'https://placehold.co/300x300/EEE/31343C'),
+(5, 'jmmstudio', 99.00, 'jmmstudio', 'https://placehold.co/300x300/EEE/31343C'),
+(6, 'jmmstudio', 399.00, 'jmmstudio', 'https://placehold.co/300x300/EEE/31343C'),
+(7, 'Fortnite', 599.00, 'บินทะลุฟ้า', 'https://placehold.co/300x300/EEE/31343C'),
+(9, 'โปรต่อย FiveM', 99.00, 'โปรต่อยทะลุ', 'https://placehold.co/300x300/EEE/31343C');
 
 -- --------------------------------------------------------
 
@@ -78,10 +80,29 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `role`, `point`, `code`, `code_point`) VALUES
-(1, 'admin', 'admin', 'admin', 1000, 'Code123', NULL),
+(1, 'admin', 'admin', 'admin', 999, 'Code123', NULL),
 (2, 'kukkai', 'kukkai', 'user', 700, NULL, 0),
 (3, 'user', 'user', 'user', 0, NULL, 0),
-(4, 'jmm', 'jmm', 'admin', 888, NULL, 0);
+(4, 'jmm', 'jmm', 'admin', 888, NULL, 0),
+(6, 'nomads', 'nomads', 'admin', 999, NULL, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `websites`
+--
+
+CREATE TABLE `websites` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `websites`
+--
+
+INSERT INTO `websites` (`id`, `name`) VALUES
+(1, 'SHOP');
 
 --
 -- Indexes for dumped tables
@@ -107,6 +128,12 @@ ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `websites`
+--
+ALTER TABLE `websites`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -120,13 +147,19 @@ ALTER TABLE `codes`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `websites`
+--
+ALTER TABLE `websites`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
