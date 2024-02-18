@@ -134,7 +134,7 @@
             </div>
             <ul class="w-full h-[250px] overflow-y-auto">
                 <div class="pl-5 pt-4">
-                    <div class="flex gap-5">
+                    <div class="flex md:gap-5 gap-2 md:text-base text-sm">
                         <p>
                             ชื่อผู้ใช้
                         </p>
@@ -148,7 +148,7 @@
                 </div>
                 <% users.forEach(user => { %>
                     <li class="px-5 py-2 rounded-md shadow flex justify-between items-center my-4">
-                        <div class="flex gap-5">
+                        <div class="flex md:gap-5 gap-2 md:text-base text-sm">
                             <p><%= user.username %></p>
                             <p><%= user.role %></p>
                             <p><%= user.point %></p>
@@ -213,14 +213,14 @@
 
     <div class="flex justify-center px-5 py-10">
         <div class="max-w-7xl w-full">
-            <div class="grid grid-cols-7 gap-10">
+            <div class="grid xl:grid-cols-7 lg:grid-cols-6 md:grid-cols-5 sm:grid-cols-4 grid-cols-3 lg:gap-10 gap-5">
 
                     <button id="addPointsBtn">
                         <div class="border border-indigo-500 text-indigo-500 rounded-md py-5">
-                            <div class="flex justify-center text-4xl">
+                            <div class="flex justify-center md:text-4xl text-3xl">
                                 <ion-icon name="cash-outline"></ion-icon>
                             </div>
-                            <div class="flex justify-center pt-2">
+                            <div class="flex justify-center pt-2 md:text-base text-sm">
                                 <p>
                                     เพิ่มพ้อยท์
                                 </p>
@@ -263,10 +263,10 @@
 
                     <button id="addProductBtn" onclick="openAddProductModal()">
                         <div class="border border-orange-500 text-orange-500 rounded-md py-5">
-                            <div class="flex justify-center text-4xl">
+                            <div class="flex justify-center md:text-4xl text-3xl">
                                 <ion-icon name="albums-outline"></ion-icon>
                             </div>
-                            <div class="flex justify-center pt-2">
+                            <div class="flex justify-center pt-2 md:text-base text-sm">
                                 <p>เพิ่มสินค้า</p>
                             </div>
                         </div>
@@ -303,28 +303,28 @@
         </div>
     </div>
 
-    <div class="flex justify-center pb-10">
+    <div class="flex justify-center pb-10 px-5">
         <div class="w-full max-w-7xl">
             <div class="p-5 rounded-md w-full h-[300px] shadow overflow-y-auto">  
                 <h1 class="pl-2">
                     สินค้าทั้งหมด
                 </h1>
                 <% products.forEach(product => { %>
-                    <div class="flex p-2 w-full rounded-md shadow justify-between my-5">
-                        <div class="flex gap-10 items-center">
-                            <img class="w-20 rounded-md" src="<%= product.image_url %>" alt="<%= product.name %>">
+                    <div class="md:flex p-2 w-full rounded-md shadow justify-between my-5">
+                        <div class="flex md:gap-10 gap-5 items-center md:text-base sm:text-sm text-xs">
+                            <img class="md:w-20 w-14 rounded-md" src="<%= product.image_url %>" alt="<%= product.name %>">
                             <h3><%= product.name %></h3>
                             <p>ราคา : <%= product.price %></p>
                             <p>รายละเอียด : <%= product.description %></p>
                         </div>
-                        <div class="flex items-center gap-5 pr-5">
+                        <div class="flex items-center md:gap-5 gap-2 pr-5 pt-3 md:pt-0">
                             <form action="/edit-product" method="POST">
                                 <input type="hidden" name="product_id" value="<%= product.id %>">
-                                <button type="submit" class="text-2xl text-yellow-400"><ion-icon name="create-outline"></ion-icon></button>
+                                <button type="submit" class="md:text-2xl text-xl text-yellow-400"><ion-icon name="create-outline"></ion-icon></button>
                             </form>
                             <form action="/delete-product" method="POST">
                                 <input type="hidden" name="product_id" value="<%= product.id %>">
-                                <button type="submit" class="text-2xl text-red-400"><ion-icon name="trash-outline"></ion-icon></button>
+                                <button type="submit" class="md:text-2xl text-xl text-red-400"><ion-icon name="trash-outline"></ion-icon></button>
                             </form>
                         </div>
                     </div>
