@@ -1,8 +1,8 @@
 <footer class="p-4 bg-white md:p-8 lg:p-10">
     <div class="mx-auto max-w-screen-xl text-center">
-        <a href="#" class="flex justify-center items-center text-2xl text-gray-900">
-            LOGO
-        </a>
+        <% websites.forEach(website => { %>
+            <a href="/home" class="flex justify-center items-center text-2xl text-gray-900"><%= website.name %> </a>
+        <% }); %>
         <p class="my-6 text-gray-500">ร้านค้าออนไลน์ ที่ดีที่สุด</p>
         <ul class="flex flex-wrap justify-center items-center mb-6 text-gray-900">
             <li>
