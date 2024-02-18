@@ -1,6 +1,6 @@
 # Web Shop Nodejs
 
-![logo](https://cdn.discordapp.com/attachments/1144179396471701624/1208777676878385152/4FCC59B1-2591-494B-8FDB-5196ACEE15F0.png?ex=65e484f0&is=65d20ff0&hm=c6e8fa7d54a572b3cf24bddbea7faf42102a5d9d85b7e73f315c08ea5831f820&)
+![logo](https://cdn.discordapp.com/attachments/1176760844495888384/1208777075440353310/image.png?ex=65e48460&is=65d20f60&hm=2d6268aea9fa5c2f2effe8d0307a8d49495e8d6bebd108151f97a4cb4f2f93c4&)
 
 ## How to install
 ```
